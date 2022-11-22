@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load crispy_forms_filters %}
+{%load crispy_forms_tags%}
+{% block content%}
+<div class= "col-md-10 offset-md-1 mt-1">
+    <!-- Jumbotron -->
+        <div class="p-4 shadow-4 rounded-3" style="background-color: hsl(0, 2%, 96%);">
+            <h5 class="card-title text-success">{{post.title}}</h5>
+            <div class="row">
+                <p class = " col-6 lead font-italic">
+                    {{post.created_on}}
+                    <img src="{{post.poster.url}}" class="card-img-top" alt="...">
+                    {{post.content}}
+                </p>
+            </div> 
+            <hr class="my-4" />
+        </div>
+        <!-- Jumbotron -->
+</div>
+<div class= "col-md-10 offset-md-1 mt-1">
+    <!-- Jumbotron -->
+        <div class="p-4 shadow-4 rounded-3" style="background-color: hsl(0, 2%, 96%);">
+            
+            <h5 class="card-title text-success">List of Comments</h5>
+            <div class="row">
+                {% for comment in post.blog_comment.all%}
+                {{comment.comment_content}}
+                {% endfor%}
+                <hr class="my-4" />
+                <form class="form-group" method="POST">
+                {% csrf_token %}
+                {{form|crispy}}
+                <br>
+
+                    <input type="submit" value="Comment" class="btn btn-success btn-lg btn-block" /><br>
+                </form>
+            </div> 
+             
+            
+
+           
+        </div>
+        <!-- Jumbotron -->
+</div>
+
+</div>
+
+{% endblock %}  

@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{%load crispy_forms_tags%}
+{% block title%}Home{% endblock %}
+{% block content %}
+<body>
+    <div class = "container">
+      
+      <div class="row row-cols-1 row-cols-md-3 g-4 mt-2">
+        {% for post in blogs %}
+        <div class="col d-flex">
+          
+          <div class="card">
+            <img src="{{post.poster.url}}" class="card-img-top" alt="...">
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">{{post.title}}</h5>
+              <h7 class="card-title">Type: {{post.type}}</h7>
+              <p class="card-title">{{post.author.username}} | {{post.created_on}} </p>
+              
+              <p class="card-text">{{post.headings}}</p>
+              
+              <div class="row">
+                
+                <div class = "col-12">
+                <a href="{% url 'blog_detail' post.id %}" class="btn btn-danger " >Readmore</a>
+                
+                  {% if user.is_authenticated%}
+                  {%  if post.author.username == user.username %} 
+                <a href="{% url 'update_blogs' post.id %}" class="btn btn-info btn-sm">
+                 <span class="glyphicon">edit</span>
+                </a>
+              
+                <a href="{% url 'delete_blogs' post.id %}" class="btn btn-danger btn-sm"> <span class="glyphicon glyphicon-remove">delete</span></a></div>
+                <hr class="my-4" />
+                <div class = "col-12">
+                
+                {% endif %}
+                {% endif %}
+                </div>
+                </div>
+                
+            </div>
+            
+          </div>
+          
+        </div>
+        {% endfor %}
+      </div>
+     
+    </div>
+</body>
+{% endblock %}

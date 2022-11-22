@@ -1,0 +1,33 @@
+
+{% extends 'base.html' %}
+{% block content%}
+{%load crispy_forms_tags%}
+
+<div class= "col-md-10 offset-md-1 mt-1">
+    <!-- Jumbotron -->
+        <div class="p-4 shadow-4 rounded-3" style="background-color: hsl(0, 2%, 96%);">
+            {% comment %} <h2 class="display-4">Simple Blog at SOLVIT</h2>
+            <div class="row">
+                <p class = " col-6 lead font-italic">
+                    form-crud-operations 
+                </p>
+              
+                
+            </div> {% endcomment %}
+            
+        
+            <hr class="my-4" />
+            <form method='POST' action=''>
+                {% csrf_token %}
+                <h1>Are you sure you what to delete this Blog Post ?</h1>
+                <input class="btn btn-danger" type="submit" value="yes">
+                <a href="{% url 'blogs' %}"><div class="btn btn-success">cancel</div></a>
+            </form>
+         
+        </div>
+        <!-- Jumbotron -->
+</div>
+
+</div>
+
+{%endblock content%}  

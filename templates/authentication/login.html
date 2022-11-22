@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load crispy_forms_filters %}
+{%load crispy_forms_tags%}
+{% load static %}
+{% block title%}Login{% endblock %}
+{% block content %}
+<div class= "col-md-10 offset-md-1 mt-1">
+    <!-- Jumbotron -->
+        <div class="p-4 shadow-2 rounded-3" style="background-color: hsl(1, 3%, 99%);">
+            <h1>Login Here</h1>
+            <hr class="my-4" />
+            {% comment %} <form class="form-sample" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{form|crispy}}
+                {{form.username}}
+                {{form.password1}}
+                <input type="submit" value="Save">
+            </form> {% endcomment %}
+            <form action = "" method = POST>
+                {% csrf_token %}
+                <div class="form-group">
+                  <label for="formGroupExampleInput">Username</label>
+                  <input type="text" class="form-control" name="username" placeholder="Username">
+                </div>
+                <div class="form-group">
+                  <label for="formGroupExampleInput2">Password</label>
+                  <input type="password" class="form-control" name="password" placeholder="Password">
+                </div>
+               
+                <input class="btn btn-outline-success mt-2" type="submit" value="SignIn">
+              </form>
+              <div class=" mt-2 font-weight-light">
+                Don't have an account? <a href="{% url 'signup' %}" class="text-success">Register</a>
+              </div>
+        </div>
+        <!-- Jumbotron -->
+</div>
+
+</div>
+{% endblock %}
